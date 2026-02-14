@@ -89,6 +89,8 @@ env = Environment(
     block_end_string="%}",
     variable_start_string="{{",
     variable_end_string="}}",
+    comment_start_string="((#",
+    comment_end_string="#))",
 )
 
 # Register the filters
