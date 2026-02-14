@@ -1,0 +1,106 @@
+\documentclass[10pt, letterpaper]{article}
+
+% Packages
+\usepackage[margin=0.4in]{geometry} % Narrow margins to fit everything
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{titlesec}
+\usepackage{tabularx}
+
+% Formatting
+\pagestyle{empty} % No page numbers
+\setlength{\parindent}{0pt} % No indentation
+
+% Custom Section Heading
+\titleformat{\section}{
+  \large\bfseries\uppercase
+}{}{0em}{}[\titlerule] % Adds the horizontal line under sections
+
+\titlespacing{\section}{0pt}{8pt}{4pt} % Tighter spacing around sections
+
+% Custom Itemize (Tighter bullets)
+\setlist[itemize]{noitemsep, topsep=0pt, leftmargin=1.2em}
+
+\begin{document}
+
+% =========================
+% Header (Compact)
+% =========================
+\begin{center}
+    {\huge \textbf{ {{ name | tex_escape }} }} \\ [4pt]
+    \small
+    \href{mailto:{{ email }}}{ {{ email | tex_escape }} } \ $|$ \ 
+    {{ mobile | tex_escape }} \ $|$ \ 
+    \href{https://{{ linkedin }}}{LinkedIn} \ $|$ \ 
+    \href{https://{{ github }}}{GitHub} \ $|$ \ 
+    {{ location | tex_escape }}
+\end{center}
+
+% =========================
+% Education
+% =========================
+\section{Education}
+
+{% for edu in education %}
+\noindent
+\textbf{ {{ edu.school | tex_escape }} } \hfill {{ edu.location | tex_escape }} \\
+\textit{ {{ edu.degree | tex_escape }} } \hfill \textbf{ {{ edu.period | tex_escape }} } \\
+\small CGPA: {{ edu.cgpa }}
+
+{% if edu.coursework %}
+\vspace{2pt}
+\textbf{Coursework:} {{ edu.coursework | join(", ") | tex_escape }}
+{% endif %}
+
+{% if edu.teaching %}
+\vspace{2pt}
+\textbf{Teaching Assistant:} {{ edu.teaching | join(", ") | tex_escape }}
+{% endif %}
+\vspace{4pt}
+{% endfor %}
+
+% =========================
+% Skills
+% =========================
+\section{Skills}
+\small
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Languages:} {{ skills.programming_languages | join(", ") | tex_escape }}
+    \item \textbf{Backend:} {{ skills.backend | join(", ") | tex_escape }}
+    \item \textbf{Frontend:} {{ skills.frontend | join(", ") | tex_escape }}
+    \item \textbf{Infrastructure:} {{ skills.infrastructure | join(", ") | tex_escape }}
+    \item \textbf{Certifications:} {{ skills.certifications | join(", ") | tex_escape }}
+\end{itemize}
+
+% =========================
+% Experience
+% =========================
+\section{Experience}
+
+{% for job in experience %}
+\noindent
+\textbf{ {{ job.company | tex_escape }} } \hfill {{ job.location | tex_escape }} \\
+\textit{ {{ job.role | tex_escape }} } \hfill \textbf{ {{ job.period | tex_escape }} }
+
+\begin{itemize}
+{% for b in job.bullets %}
+  % This filter now handles <strong>, <b>, <em>, and escaping (like %) automatically
+  \item {{ b | format_latex }}
+{% endfor %}
+\end{itemize}
+\vspace{4pt}
+
+{% endfor %}
+
+% =========================
+% Awards
+% =========================
+\section{Honours \& Awards}
+
+\begin{itemize}
+{% for a in awards %}
+  \item {{ a | tex_escape }}
+{% endfor %}
+\end{itemize}
+
+\end{document}

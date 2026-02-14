@@ -1,0 +1,94 @@
+name: "Jerome Goh"
+location: "Singapore"
+email: "jerome.goh.work@gmail.com"
+mobile: "(+65) 82486050"
+linkedin: "linkedin.com/in/jerome-goh-9a8406174"
+github: "github.com/jaejayrome"
+
+education:
+  - school: "National University of Singapore"
+    degree: "Bachelor of Computing - Computer Science"
+    location: "Singapore"
+    period: "Aug 2022 - May 2026"
+    cgpa: "4.53/5.0"
+    coursework:
+      - "Programming Methodology I & II"
+      - "Parallel & Concurrent Programming"
+      - "Data Structures & Algorithms"
+      - "Software Engineering"
+    teaching:
+      - "CS2030 Programming Methodology II (Object-Oriented & Functional Programming)"
+      - "CP2106 Independent Software Development Project (Software Engineering)"
+
+skills:
+  programming_languages:
+    - "Python"
+    - "Java"
+    - "TypeScript"
+    - "C++"
+    - "SQL"
+    - "Bash"
+  backend:
+    - "FastAPI"
+    - "Node.js"
+    - "PostgreSQL"
+    - "DynamoDB"
+  frontend:
+    - "React.js"
+    - "Next.js"
+    - "TailwindCSS"
+    - "Tanstack Query"
+  infrastructure:
+    - "Linux"
+    - "Terraform"
+    - "Ansible"
+    - "Docker"
+    - "Prometheus"
+    - "Grafana"
+    - "Kubernetes"
+    - "CI/CD"
+    - "AWS"
+  certifications:
+    - "AWS Solutions Architect - Associate (SAA-C03)"
+
+experience:
+  - company: "Bytedance"
+    role: "Software Engineer Intern"
+    location: "Singapore"
+    period: "Aug 2025 - Present"
+    bullets:
+      - "Contributed to a <strong>distributed logging, indexing, and querying system</strong> using Quickwit in Rust, integrating ByteMQ and TOS."
+      - "Developed a <strong>cloud-native migration</strong> of proxy cluster deployment from Ansible to Kubernetes using Kustomize, hosting numerous G3 proxies."
+      - "Engineered a <strong>GitOps pipeline</strong> using ArgoCD for state consistency and automated deployment."
+      - "Implemented a <strong>Kubernetes-wide logging pipeline</strong> using Vector Helm charts, deploying agent and aggregator components."
+      - "Designed a <strong>custom WebSocket middleware</strong> using goroutines and channels to demultiplex and distribute logs reliably."
+      - "Integrated <strong>Prometheus scrape jobs</strong> and push-based models for compute, cluster, and application metrics."
+
+  - company: "Govtech Singapore"
+    role: "Software Engineer Intern"
+    location: "Singapore"
+    period: "Jan 2025 - Aug 2025"
+    bullets:
+      - "Implemented a <strong>FastAPI proxy service</strong> enabling seamless cross-team API integration."
+      - "Built <strong>AWS infrastructure</strong> (VPC, IAM, ECS, ALB/NLB) using Terraform with formatting and linting protocols."
+      - "Reduced <strong>CloudWatch costs by 20%</strong> and improved query performance by 30% using Python coroutines for concurrent log processing."
+      - "Resolved <strong>multi-account AWS performance bottlenecks</strong> using cross-account API Gateway, SQS, and Lambda reserved concurrency."
+      - "Integrated <strong>AWS Cognito</strong> with a custom Lambda trigger to synchronize user pools with PostgreSQL."
+      - "Designed a <strong>schema-merging solution</strong> preventing race conditions during writes."
+      - "Implemented a <strong>CI/CD pipeline</strong> using Flyway for controlled database migrations."
+
+  - company: "Beep Technologies"
+    role: "Software Engineer Intern"
+    location: "Singapore"
+    period: "Dec 2023 - Jun 2024"
+    bullets:
+      - "Improved <strong>Google Maps performance by 50%</strong> in a PWA using debouncing, superclustering, and framer-motion animations."
+      - "Refactored the <strong>frontend state machine</strong> to support Anti-Idling feature and custom business logic."
+      - "Implemented a <strong>virtualized infinite listview</strong> for charging stations and sessions."
+      - "Introduced <strong>TanStack Query</strong> with generic/custom hooks, eslint, prettier, and husky pre-commit hooks."
+      - "Improved <strong>React Native UI consistency</strong> across Android and iOS."
+      - "Integrated <strong>push notifications</strong> using expo-notifications and backend middleware for inactivity-based logout enforcement."
+
+awards:
+  - "3rd Place Overall Best Project (ML/AI), Anaconda Data Science Expo 2023"
+  - "2nd Place, NUS Fintech Summit 2024 (Tokka Labs Track)"

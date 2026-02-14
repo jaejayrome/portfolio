@@ -1,0 +1,182 @@
+\documentclass[10pt, letterpaper]{article}
+
+% Packages
+\usepackage[margin=0.4in]{geometry} % Narrow margins to fit everything
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{titlesec}
+\usepackage{tabularx}
+
+% Formatting
+\pagestyle{empty} % No page numbers
+\setlength{\parindent}{0pt} % No indentation
+
+% Custom Section Heading
+\titleformat{\section}{
+  \large\bfseries\uppercase
+}{}{0em}{}[\titlerule] % Adds the horizontal line under sections
+
+\titlespacing{\section}{0pt}{8pt}{4pt} % Tighter spacing around sections
+
+% Custom Itemize (Tighter bullets)
+\setlist[itemize]{noitemsep, topsep=0pt, leftmargin=1.2em}
+
+\begin{document}
+
+% =========================
+% Header (Compact)
+% =========================
+\begin{center}
+    {\huge \textbf{ Jerome Goh }} \\ [4pt]
+    \small
+    \href{mailto:jerome.goh.work@gmail.com}{ jerome.goh.work@gmail.com } \ $|$ \ 
+    (+65) 82486050 \ $|$ \ 
+    \href{https://linkedin.com/in/jerome-goh-9a8406174}{LinkedIn} \ $|$ \ 
+    \href{https://github.com/jaejayrome}{GitHub} \ $|$ \ 
+    Singapore
+\end{center}
+
+% =========================
+% Education
+% =========================
+\section{Education}
+
+
+\noindent
+\textbf{ National University of Singapore } \hfill Singapore \\
+\textit{ Bachelor of Computing - Computer Science } \hfill \textbf{ Aug 2022 - May 2026 } \\
+\small CGPA: 4.53/5.0
+
+
+\vspace{2pt}
+\textbf{Coursework:} Programming Methodology I \& II, Parallel \& Concurrent Programming, Data Structures \& Algorithms, Software Engineering
+
+
+
+\vspace{2pt}
+\textbf{Teaching Assistant:} CS2030 Programming Methodology II (Object-Oriented \& Functional Programming), CP2106 Independent Software Development Project (Software Engineering)
+
+\vspace{4pt}
+
+
+% =========================
+% Skills
+% =========================
+\section{Skills}
+\small
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Languages:} Python, Java, TypeScript, C++, SQL, Bash
+    \item \textbf{Backend:} FastAPI, Node.js, PostgreSQL, DynamoDB
+    \item \textbf{Frontend:} React.js, Next.js, TailwindCSS, Tanstack Query
+    \item \textbf{Infrastructure:} Linux, Terraform, Ansible, Docker, Prometheus, Grafana, Kubernetes, CI/CD, AWS
+    \item \textbf{Certifications:} AWS Solutions Architect - Associate (SAA-C03)
+\end{itemize}
+
+% =========================
+% Experience
+% =========================
+\section{Experience}
+
+
+\noindent
+\textbf{ Bytedance } \hfill Singapore \\
+\textit{ Software Engineer Intern } \hfill \textbf{ Aug 2025 - Present }
+
+\begin{itemize}
+
+  % This filter now handles <strong>, <b>, <em>, and escaping (like %) automatically
+  \item Contributed to a \textbf{distributed logging, indexing, and querying system} using Quickwit in Rust, integrating ByteMQ and TOS.
+
+  % This filter now handles <strong>, <b>, <em>, and escaping (like %) automatically
+  \item Developed a \textbf{cloud-native migration} of proxy cluster deployment from Ansible to Kubernetes using Kustomize, hosting numerous G3 proxies.
+
+  % This filter now handles <strong>, <b>, <em>, and escaping (like %) automatically
+  \item Engineered a \textbf{GitOps pipeline} using ArgoCD for state consistency and automated deployment.
+
+  % This filter now handles <strong>, <b>, <em>, and escaping (like %) automatically
+  \item Implemented a \textbf{Kubernetes-wide logging pipeline} using Vector Helm charts, deploying agent and aggregator components.
+
+  % This filter now handles <strong>, <b>, <em>, and escaping (like %) automatically
+  \item Designed a \textbf{custom WebSocket middleware} using goroutines and channels to demultiplex and distribute logs reliably.
+
+  % This filter now handles <strong>, <b>, <em>, and escaping (like %) automatically
+  \item Integrated \textbf{Prometheus scrape jobs} and push-based models for compute, cluster, and application metrics.
+
+\end{itemize}
+\vspace{4pt}
+
+
+\noindent
+\textbf{ Govtech Singapore } \hfill Singapore \\
+\textit{ Software Engineer Intern } \hfill \textbf{ Jan 2025 - Aug 2025 }
+
+\begin{itemize}
+
+  % This filter now handles <strong>, <b>, <em>, and escaping (like %) automatically
+  \item Implemented a \textbf{FastAPI proxy service} enabling seamless cross-team API integration.
+
+  % This filter now handles <strong>, <b>, <em>, and escaping (like %) automatically
+  \item Built \textbf{AWS infrastructure} (VPC, IAM, ECS, ALB/NLB) using Terraform with formatting and linting protocols.
+
+  % This filter now handles <strong>, <b>, <em>, and escaping (like %) automatically
+  \item Reduced \textbf{CloudWatch costs by 20\%} and improved query performance by 30\% using Python coroutines for concurrent log processing.
+
+  % This filter now handles <strong>, <b>, <em>, and escaping (like %) automatically
+  \item Resolved \textbf{multi-account AWS performance bottlenecks} using cross-account API Gateway, SQS, and Lambda reserved concurrency.
+
+  % This filter now handles <strong>, <b>, <em>, and escaping (like %) automatically
+  \item Integrated \textbf{AWS Cognito} with a custom Lambda trigger to synchronize user pools with PostgreSQL.
+
+  % This filter now handles <strong>, <b>, <em>, and escaping (like %) automatically
+  \item Designed a \textbf{schema-merging solution} preventing race conditions during writes.
+
+  % This filter now handles <strong>, <b>, <em>, and escaping (like %) automatically
+  \item Implemented a \textbf{CI/CD pipeline} using Flyway for controlled database migrations.
+
+\end{itemize}
+\vspace{4pt}
+
+
+\noindent
+\textbf{ Beep Technologies } \hfill Singapore \\
+\textit{ Software Engineer Intern } \hfill \textbf{ Dec 2023 - Jun 2024 }
+
+\begin{itemize}
+
+  % This filter now handles <strong>, <b>, <em>, and escaping (like %) automatically
+  \item Improved \textbf{Google Maps performance by 50\%} in a PWA using debouncing, superclustering, and framer-motion animations.
+
+  % This filter now handles <strong>, <b>, <em>, and escaping (like %) automatically
+  \item Refactored the \textbf{frontend state machine} to support Anti-Idling feature and custom business logic.
+
+  % This filter now handles <strong>, <b>, <em>, and escaping (like %) automatically
+  \item Implemented a \textbf{virtualized infinite listview} for charging stations and sessions.
+
+  % This filter now handles <strong>, <b>, <em>, and escaping (like %) automatically
+  \item Introduced \textbf{TanStack Query} with generic/custom hooks, eslint, prettier, and husky pre-commit hooks.
+
+  % This filter now handles <strong>, <b>, <em>, and escaping (like %) automatically
+  \item Improved \textbf{React Native UI consistency} across Android and iOS.
+
+  % This filter now handles <strong>, <b>, <em>, and escaping (like %) automatically
+  \item Integrated \textbf{push notifications} using expo-notifications and backend middleware for inactivity-based logout enforcement.
+
+\end{itemize}
+\vspace{4pt}
+
+
+
+% =========================
+% Awards
+% =========================
+\section{Honours \& Awards}
+
+\begin{itemize}
+
+  \item 3rd Place Overall Best Project (ML/AI), Anaconda Data Science Expo 2023
+
+  \item 2nd Place, NUS Fintech Summit 2024 (Tokka Labs Track)
+
+\end{itemize}
+
+\end{document}
