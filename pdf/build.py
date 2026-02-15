@@ -25,7 +25,7 @@ def tex_escape(text):
 
     conv = {
         "&": r"\&",
-        "%": r"\%",  # This fixes your "20%" crash automatically
+        "%": r"\%",
         "$": r"\$",
         "#": r"\#",
         "_": r"\_",
@@ -52,12 +52,11 @@ def parse_html_to_latex(soup_element):
     for child in soup_element.children:
         if isinstance(child, NavigableString):
             # If it's plain text, JUST escape it.
-            # This handles the "20%" -> "20\%" conversion.
             result.append(tex_escape(str(child)))
         elif child.name in TAG_MAP:
             # If it's a known tag, wrap the inner content in the LaTeX command
             latex_cmd = TAG_MAP[child.name]
-            inner_text = parse_html_to_latex(child)  # Recursion handles nesting!
+            inner_text = parse_html_to_latex(child)
             result.append(f"{latex_cmd}{{{inner_text}}}")
         else:
             # If unknown tag, just render the text inside
@@ -73,7 +72,6 @@ def format_latex(text):
     if not isinstance(text, str):
         return text
 
-    # We wrap text in a dummy span so BS4 processes it as a fragment
     soup = BeautifulSoup(f"<span>{text}</span>", "html.parser")
     return parse_html_to_latex(soup.find("span"))
 
@@ -121,7 +119,7 @@ try:
             str(tex_path),
         ],
         check=True,
-        stdout=subprocess.DEVNULL,  # Hides the spammy logs
+        stdout=subprocess.DEVNULL,
     )
     print(f"Success! PDF generated at: {output_dir / 'resume.pdf'}")
 except subprocess.CalledProcessError:

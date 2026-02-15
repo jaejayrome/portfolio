@@ -57,11 +57,11 @@ experience:
     location: "Singapore"
     period: "Aug 2025 - Present"
     bullets:
-      - "Contributed to a <strong>distributed logging, indexing, and querying system</strong> using Quickwit in Rust, integrating ByteMQ and TOS."
-      - "Developed a <strong>cloud-native migration</strong> of proxy cluster deployment from Ansible to Kubernetes using Kustomize, hosting numerous G3 proxies."
+      - "<strong>Distributed Logging System:</strong> Contributed to a <strong>distributed logging, indexing, and querying system</strong> using Quickwit in Rust, integrating ByteMQ and TOS."
+      - "<strong>Cloud-Native Infrastructure & GitOps:</strong> Developed a <strong>cloud-native migration</strong> of proxy cluster deployment from Ansible to Kubernetes using Kustomize, hosting numerous G3 proxies."
       - "Engineered a <strong>GitOps pipeline</strong> using ArgoCD for state consistency and automated deployment."
-      - "Implemented a <strong>Kubernetes-wide logging pipeline</strong> using Vector Helm charts, deploying agent and aggregator components."
-      - "Designed a <strong>custom WebSocket middleware</strong> using goroutines and channels to demultiplex and distribute logs reliably."
+      - "<strong>Kubernetes Logging Initiative:</strong> Implemented a <strong>Kubernetes-wide logging pipeline</strong> using Vector Helm charts, deploying agent and aggregator components."
+      - "<strong>Kubernetes Metrics Collection:</strong> Designed a <strong>custom WebSocket middleware</strong> using goroutines and channels to demultiplex and distribute logs reliably."
       - "Integrated <strong>Prometheus scrape jobs</strong> and push-based models for compute, cluster, and application metrics."
 
   - company: "Govtech Singapore"
