@@ -57,8 +57,8 @@ experience:
     location: "Singapore"
     period: "Aug 2025 - Present"
     bullets:
-      - "<strong>Distributed Logging System:</strong> Contributed to implementing a distributed logging solution using Quickwit in Rust by integrating Bytedance's in-house cloud native services (ByteMQ and TOS)."
-      - "<strong>Cloud-Native Infrastructure & GitOps:</strong> Developed a cloud-native solution migrating anonymous proxy cluster deployment from Ansible to Kubernetes, using Kustomize and Jinja2 for automated template rendering and ArgoCD for automated deployments."
+      - "<strong>Distributed Logging System:</strong> Contributed to implementing a <strong>distributed logging solution</strong> using <strong>Quickwit</strong> in Rust by integrating Bytedance's internal tools (ByteMQ and TOS)."
+      - "<strong>Cloud-Native Infrastructure & GitOps:</strong> Developed a <strong>cloud-native</strong> solution migrating anonymous proxy cluster deployments from Ansible to Kubernetes, using <strong>Kustomize and Jinja2</strong> for automated template rendering and <strong>ArgoCD</strong> for automated deployments."
       - "<strong>Kubernetes Logging Initiative:</strong> Implemented a <strong>Kubernetes-wide logging pipeline</strong> using Vector's Agent and Aggregator Architecture to collect and process <strong>Kubernetes Logs</strong>, forwarding them to a <strong>Websocket</strong> Middleware, implemented with <strong>goroutines & channels </strong>."
       - "<strong>Observability & SRE:</strong> Integrated internal <strong>Prometheus scrape/push pipelines</strong> for metrics collection, refactored <strong>Grafana dashboards</strong> for simpler monitoring and performed live traffic migration monitoring and real-time troubleshooting."
       - "<strong>Infrastructure As Code:</strong> Delivered a <strong>dual-cloud proxy</strong> by coupling <strong>Terraform</strong> for automated resource provisioning with <strong>Ansible</strong> for seamless <strong>application delivery</strong> across providers."
