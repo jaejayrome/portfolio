@@ -43,9 +43,8 @@
 
 {% for edu in education %}
 \noindent
-\textbf{ {{ edu.school | tex_escape }} } \hfill {{ edu.location | tex_escape }} \\
-\textit{ {{ edu.degree | tex_escape }} } \hfill \textbf{ {{ edu.period | tex_escape }} } \\
-\small CGPA: {{ edu.cgpa }}
+\textbf{ {{- edu.school | tex_escape -}} }\hfill{} {{- edu.location | tex_escape -}} \\
+\textit{ {{- edu.degree | tex_escape -}} }\textnormal{ | CGPA: {{ edu.cgpa }}}\hfill{} \textbf{ {{- edu.period | tex_escape -}} }
 
 {% if edu.coursework %}
 \vspace{2pt}
@@ -64,7 +63,9 @@
 % =========================
 \section{Skills}
 \small
-\begin{itemize}[leftmargin=*]
+% leftmargin=0pt
+% label={} removes the bullet point
+\begin{itemize}[leftmargin=0pt, label={}]
     \item \textbf{Languages:} {{ skills.programming_languages | join(", ") | tex_escape }}
     \item \textbf{Backend:} {{ skills.backend | join(", ") | tex_escape }}
     \item \textbf{Frontend:} {{ skills.frontend | join(", ") | tex_escape }}
@@ -91,6 +92,7 @@
 
 {% endfor %}
 
+{% if awards %}
 % =========================
 % Awards
 % =========================
@@ -101,5 +103,6 @@
   \item {{ a | tex_escape }}
 {% endfor %}
 \end{itemize}
+{% endif %}
 
 \end{document}
