@@ -79,8 +79,8 @@
 
 {% for job in experience %}
 \noindent
-\textbf{ {{ job.company | tex_escape }} } \hfill {{ job.location | tex_escape }} \\
-\textit{ {{ job.role | tex_escape }} } \hfill \textbf{ {{ job.period | tex_escape }} }
+\textbf{ {{- job.company | tex_escape -}} } \hfill {{ job.location | tex_escape }} \\
+\textit{ {{- job.role | tex_escape -}} } \hfill \textbf{ {{- job.period | tex_escape -}} }
 
 \begin{itemize}
 {% for b in job.bullets %}
