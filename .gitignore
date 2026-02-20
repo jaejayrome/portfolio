@@ -1,4 +1,5 @@
-# Within the pdf directory
+# environment variables 
+.env
 
 # Output-generated files 
 pdf/output/*.log 
