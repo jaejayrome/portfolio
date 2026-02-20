@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ resume.name }}{% endblock %}</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Catppuccin Mocha Palette */
+        :root {
+            --crust: #11111b;     /* Deepest background */
+            --mantle: #181825;    /* Terminal header */
+            --base: #1e1e2e;      /* Main terminal body */
+            --surface0: #313244;  /* Borders */
+            --text: #cdd6f4;      /* Default text */
+            --subtext0: #a6adc8;  /* Muted text */
+            --blue: #89b4fa;      /* Links */
+            --green: #a6e3a1;     /* Success / Prompts */
+            --mauve: #cba6f7;     /* Purple accents */
+            --red: #f38ba8;       /* Close button */
+            --yellow: #f9e2af;    /* Minimize button */
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        /* The entire page background outside the terminal */
+        body { 
+            font-family: 'JetBrains Mono', monospace; 
+            background: var(--crust); 
+            color: var(--text); 
+            line-height: 1.6; 
+            font-size: 14px; 
+            padding: 2rem 1rem;
+            display: flex;
+            justify-content: center;
+        }
+        
+        /* The Terminal Window */
+        .terminal-window { 
+            width: 100%;
+            max-width: 850px; 
+            background: var(--base);
+            border-radius: 10px;
+            border: 1px solid var(--surface0);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+            overflow: hidden;
+        }
+
+        /* Mac Traffic Lights Header */
+        .terminal-header {
+            background: var(--mantle);
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid var(--surface0);
+        }
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .dot-red { background: var(--red); }
+        .dot-yellow { background: var(--yellow); }
+        .dot-green { background: var(--green); }
+        .header-title { 
+            margin: 0 auto; 
+            color: var(--subtext0); 
+            font-size: 0.85rem; 
+            transform: translateX(-20px); /* Center offset for the dots */
+        }
+
+        /* Terminal Body */
+        .terminal-body { padding: 2rem 2.5rem; }
+
+        /* The Starship/Terminal Prompt Navigation */
+        nav { 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 1.5rem; 
+            margin-bottom: 3rem; 
+            font-weight: bold;
+            align-items: center;
+        }
+        .prompt-dir { color: var(--mauve); }
+        .prompt-arrow { color: var(--green); margin-right: 0.5rem; }
+        
+        nav a { 
+            color: var(--blue); 
+            text-decoration: none; 
+            transition: color 0.2s; 
+        }
+        nav a:hover, nav a.active { color: var(--text); text-decoration: underline; }
+        
+        /* Injecting the command syntax before the links */
+        .nav-links::before {
+            content: "ls -a ";
+            color: var(--subtext0);
+            font-weight: normal;
+            margin-right: 0.5rem;
+        }
+
+        /* General Content Styles */
+        h1, h2, h3 { color: var(--text); margin-bottom: 1rem; }
+        h2 { color: var(--blue); margin-top: 2.5rem; }
+        a.link { color: var(--blue); text-decoration: none; }
+        a.link:hover { text-decoration: underline; }
+        .meta { color: var(--subtext0); font-size: 0.9em; }
+
+        /* Animations */
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .animate { animation: fadeUp 0.5s ease forwards; }
+    </style>
+</head>
+<body>
+    <div class="terminal-window">
+        <div class="terminal-header">
+            <div class="dot dot-red"></div>
+            <div class="dot dot-yellow"></div>
+            <div class="dot dot-green"></div>
+            <div class="header-title">jerome@portfolio: ~</div>
+        </div>
+
+        <div class="terminal-body">
+            <nav>
+                <span class="prompt-dir">~/portfolio</span>
+                <span class="prompt-arrow">❯</span>
+                <div class="nav-links">
+                    <a href="/">home</a>
+                    <a href="/blog/">blog</a>
+                    <a href="https://{{ resume.github }}" target="_blank">github</a>
+                    <a href="/resume.pdf" target="_blank">resume.pdf</a>
+                </div>
+            </nav>
+            
+            <main class="animate">
+                {% block content %}{% endblock %}
+            </main>
+        </div>
+    </div>
+</body>
+</html>

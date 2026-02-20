@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Jerome Goh</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0d1117; --fg: #c9d1d9; --muted: #8b949e; 
+            --accent: #58a6ff; --border: #30363d; --card-hover: #161b22;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'JetBrains Mono', monospace; background: var(--bg); color: var(--fg); line-height: 1.6; font-size: 14px; }
+        .container { max-width: 800px; margin: 0 auto; padding: 2rem 1.5rem; }
+        
+        /* Navigation */
+        nav { display: flex; gap: 1.5rem; margin-bottom: 3rem; padding-bottom: 1rem; border-bottom: 1px dashed var(--border); }
+        nav a { color: var(--fg); text-decoration: none; font-weight: bold; transition: color 0.2s; }
+        nav a:hover, nav a.active { color: var(--accent); }
+        nav a::before { content: "./"; color: var(--muted); font-weight: normal; }
+
+        /* General Styles */
+        h1, h2, h3 { color: var(--fg); margin-bottom: 1rem; }
+        h2 { color: var(--accent); margin-top: 2rem; }
+        a.link { color: var(--accent); text-decoration: none; }
+        a.link:hover { text-decoration: underline; }
+        .meta { color: var(--muted); font-size: 0.9em; }
+
+        /* Animations */
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .animate { animation: fadeUp 0.5s ease forwards; }
+
+        /* Cards */
+        .card { padding: 1rem; border-left: 2px solid var(--border); margin-bottom: 1.5rem; transition: 0.2s; }
+        .card:hover { border-left-color: var(--accent); background: var(--card-hover); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="/">home</a>
+            <a href="/blog/">blog</a>
+            <a href="https://github.com/github.com/jaejayrome" target="_blank">github</a>
+            <a href="/resume.pdf" target="_blank">view_resume.pdf</a>
+        </nav>
+        
+        <main class="animate">
+            
+<h1>~/blog</h1>
+<p class="meta" style="margin-bottom: 2rem;">Technical notes, write-ups, and project documentation.</p>
+
+<div>
+    
+    <p class="meta">No posts found./p>
+    
+</div>
+
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{% extends "base.html.j2" %}
+
+{% block title %}Blog | {{ resume.name }}{% endblock %}
+
+{% block content %}
+<h1>~/blog</h1>
+<p class="meta" style="margin-bottom: 2rem;">Technical notes, write-ups, and project documentation.</p>
+
+<div>
+    {% for post in blogs %}
+    <a href="/blog/{{ post.slug }}/" style="display: block; text-decoration: none; margin-bottom: 1.5rem;" class="card">
+        <div style="display: flex; justify-content: space-between; align-items: baseline;">
+            <strong style="font-size: 1.1em; color: var(--fg);">{{ post.title }}</strong>
+            <span class="meta">{{ post.date }}</span>
+        </div>
+    </a>
+    {% else %}
+    <p class="meta">No posts found. /p>
+    {% endfor %}
+</div>
+{% endblock %}

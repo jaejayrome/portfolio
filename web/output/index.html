@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jerome Goh</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0d1117; --fg: #c9d1d9; --muted: #8b949e; 
+            --accent: #58a6ff; --border: #30363d; --card-hover: #161b22;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'JetBrains Mono', monospace; background: var(--bg); color: var(--fg); line-height: 1.6; font-size: 14px; }
+        .container { max-width: 800px; margin: 0 auto; padding: 2rem 1.5rem; }
+        
+        /* Navigation */
+        nav { display: flex; gap: 1.5rem; margin-bottom: 3rem; padding-bottom: 1rem; border-bottom: 1px dashed var(--border); }
+        nav a { color: var(--fg); text-decoration: none; font-weight: bold; transition: color 0.2s; }
+        nav a:hover, nav a.active { color: var(--accent); }
+        nav a::before { content: "./"; color: var(--muted); font-weight: normal; }
+
+        /* General Styles */
+        h1, h2, h3 { color: var(--fg); margin-bottom: 1rem; }
+        h2 { color: var(--accent); margin-top: 2rem; }
+        a.link { color: var(--accent); text-decoration: none; }
+        a.link:hover { text-decoration: underline; }
+        .meta { color: var(--muted); font-size: 0.9em; }
+
+        /* Animations */
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .animate { animation: fadeUp 0.5s ease forwards; }
+
+        /* Cards */
+        .card { padding: 1rem; border-left: 2px solid var(--border); margin-bottom: 1.5rem; transition: 0.2s; }
+        .card:hover { border-left-color: var(--accent); background: var(--card-hover); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="/">home</a>
+            <a href="/blog/">blog</a>
+            <a href="https://github.com/github.com/jaejayrome" target="_blank">github</a>
+            <a href="/resume.pdf" target="_blank">view_resume.pdf</a>
+        </nav>
+        
+        <main class="animate">
+            
+<header style="margin-bottom: 3rem;">
+    <h1>jerome_goh</h1>
+    <div class="meta">Software Engineer based in Singapore</div>
+</header>
+
+<section>
+    <h2>~/experience</h2>
+    
+    <div class="card">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+            <strong>Software Engineer Intern @ Bytedance</strong>
+            <span class="meta">Aug 2025 - Present</span>
+        </div>
+        <ul style="list-style: none; padding-left: 1rem;">
+            
+            <li style="margin-bottom: 0.5rem;">
+                <span style="color: var(--accent);">›</span> 
+                <strong>Distributed Logging System:</strong> Contributed to implementing a distributed logging solution using Quickwit in Rust by integrating Bytedance's internal tools (ByteMQ and TOS).
+            </li>
+            
+            <li style="margin-bottom: 0.5rem;">
+                <span style="color: var(--accent);">›</span> 
+                <strong>Cloud-Native Infrastructure & GitOps:</strong> Developed a cloud-native solution migrating anonymous proxy cluster deployments from Ansible to Kubernetes, using Kustomize and Jinja2 for automated template rendering and ArgoCD for automated deployments.
+            </li>
+            
+            <li style="margin-bottom: 0.5rem;">
+                <span style="color: var(--accent);">›</span> 
+                <strong>Kubernetes Logging Initiative:</strong> Implemented a Kubernetes-wide logging pipeline using Vector's Agent and Aggregator Architecture to collect and process Kubernetes Logs, forwarding them to a Websocket Middleware, implemented with goroutines & channels .
+            </li>
+            
+            <li style="margin-bottom: 0.5rem;">
+                <span style="color: var(--accent);">›</span> 
+                <strong>Observability & SRE:</strong> Integrated internal Prometheus scrape/push pipelines for metrics collection, refactored Grafana dashboards for simpler monitoring and performed live traffic migration monitoring and real-time troubleshooting.
+            </li>
+            
+            <li style="margin-bottom: 0.5rem;">
+                <span style="color: var(--accent);">›</span> 
+                <strong>Infrastructure As Code:</strong> Delivered a dual-cloud proxy by coupling Terraform for automated resource provisioning with Ansible for seamless application delivery across providers.
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="card">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+            <strong>Software Engineer Intern @ Govtech Singapore</strong>
+            <span class="meta">Jan 2025 - Aug 2025</span>
+        </div>
+        <ul style="list-style: none; padding-left: 1rem;">
+            
+            <li style="margin-bottom: 0.5rem;">
+                <span style="color: var(--accent);">›</span> 
+                <strong>Cloud Infrastructure & Integration:</strong> Implemented a FastAPI proxy service enabling seamless cross-team API integration while implementing AWS infrastructure (VPC, IAM, ECS, ALB/NLB) via Terraform with integrated formatting and linting protocols to ensure code quality and consistency.
+            </li>
+            
+            <li style="margin-bottom: 0.5rem;">
+                <span style="color: var(--accent);">›</span> 
+                <strong>Cost Optimisation:</strong> Used Python coroutines for concurrent log processing across multiple log groups/streams of Sagemaker functions using CloudWatch Insights queries to resolve timeout issues, reducing CloudWatch costs by 20% and improving query performance by 30% as compared to that via console.
+            </li>
+            
+            <li style="margin-bottom: 0.5rem;">
+                <span style="color: var(--accent);">›</span> 
+                <strong>Scalability Improvements:</strong> Resolved performance bottlenecks caused by unexpected high demand in a multi-account AWS architecture by implementing solutions involving cross-account API Gateway invocations, decoupled SQS messaging, and the application of Lambda reserved concurrency to ensure system stability under peak loads.
+            </li>
+            
+            <li style="margin-bottom: 0.5rem;">
+                <span style="color: var(--accent);">›</span> 
+                <strong>Backend Infrastructure:</strong> Architected the authentication layer by integrating AWS Cognito with a custom Lambda trigger to synchronise the user pool with a PostgreSQL database.
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="card">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+            <strong>Software Engineer Intern @ Beep Technologies</strong>
+            <span class="meta">Dec 2023 - Jun 2024</span>
+        </div>
+        <ul style="list-style: none; padding-left: 1rem;">
+            
+            <li style="margin-bottom: 0.5rem;">
+                <span style="color: var(--accent);">›</span> 
+                <strong>Performance Enhancements:</strong> Improved the performance of Google Maps inside a White Label Progressive Web Application (PWA) by 50% through employing the use of debouncing, superclustering and framer motion animations to reduce the lag caused by the rendering of thousands of EV charging stations inside the component.
+            </li>
+            
+            <li style="margin-bottom: 0.5rem;">
+                <span style="color: var(--accent);">›</span> 
+                <strong>Feature Addition:</strong> Refactored the internal state machine on the frontend to handle custom business logic in order to incorporate the Anti-Idling feature, preventing EV users from hogging a parking lot after their charging session has ended.
+            </li>
+            
+            <li style="margin-bottom: 0.5rem;">
+                <span style="color: var(--accent);">›</span> 
+                <strong>Mobile Development:</strong> Made UI Improvements using React Native to ensure the same UX for both Android and iOS users.
+            </li>
+            
+        </ul>
+    </div>
+    
+</section>
+
+<section>
+    <h2>~/skills</h2>
+    <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 0.5rem;">
+        
+        <div style="color: var(--muted); text-align: right; padding-right: 1rem; border-right: 1px solid var(--border);">programming_languages</div>
+        <div>Python, Java, TypeScript, C++, SQL, Bash</div>
+        
+        <div style="color: var(--muted); text-align: right; padding-right: 1rem; border-right: 1px solid var(--border);">backend</div>
+        <div>FastAPI, Node.js, PostgreSQL, DynamoDB</div>
+        
+        <div style="color: var(--muted); text-align: right; padding-right: 1rem; border-right: 1px solid var(--border);">frontend</div>
+        <div>React.js, Next.js, TailwindCSS, Tanstack Query</div>
+        
+        <div style="color: var(--muted); text-align: right; padding-right: 1rem; border-right: 1px solid var(--border);">infrastructure</div>
+        <div>Linux, Terraform, Ansible, Docker, Prometheus, Grafana, Kubernetes, CI/CD, AWS</div>
+        
+        <div style="color: var(--muted); text-align: right; padding-right: 1rem; border-right: 1px solid var(--border);">certifications</div>
+        <div>AWS Solutions Architect - Associate (SAA-C03)</div>
+        
+    </div>
+</section>
+
+        </main>
+    </div>
+</body>
+</html>

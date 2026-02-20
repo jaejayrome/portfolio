@@ -56,6 +56,18 @@ experience:
     role: "Software Engineer Intern"
     location: "Singapore"
     period: "Aug 2025 - Present"
+    skills:
+      [
+        "Kubernetes",
+        "Golang",
+        "Ansible",
+        "ArgoCD",
+        "Kustomize",
+        "Grafana",
+        "ElasticSearch",
+        "Websockets",
+        "Linux",
+      ]
     bullets:
       - "<strong>Distributed Logging System:</strong> Contributed to implementing a <strong>distributed logging solution</strong> using <strong>Quickwit</strong> in Rust by integrating Bytedance's internal tools (ByteMQ and TOS)."
       - "<strong>Cloud-Native Infrastructure & GitOps:</strong> Developed a <strong>cloud-native</strong> solution migrating anonymous proxy cluster deployments from Ansible to Kubernetes, using <strong>Kustomize and Jinja2</strong> for automated template rendering and <strong>ArgoCD</strong> for automated deployments."
@@ -67,6 +79,7 @@ experience:
     role: "Software Engineer Intern"
     location: "Singapore"
     period: "Jan 2025 - Aug 2025"
+    skills: ["Terraform", "Next.js", "Amazon Web Services", "Nginx", "Python"]
     bullets:
       - "<strong>Cloud Infrastructure & Integration:</strong> Implemented a <strong>FastAPI proxy</strong> service enabling seamless cross-team API integration while implementing <strong>AWS infrastructure</strong> (VPC, IAM, ECS, ALB/NLB) via <strong>Terraform</strong> with integrated formatting and linting protocols to ensure code quality and consistency"
       - "<strong>Cost Optimisation:</strong> Used Python coroutines for <strong>concurrent log processing</strong> across multiple log groups/streams of Sagemaker functions using CloudWatch Insights queries to <strong>resolve timeout issues</strong>, reducing CloudWatch costs by <strong>20%</strong> and improving query performance by <strong>30%</strong> as compared to that via console."
@@ -77,6 +90,7 @@ experience:
     role: "Software Engineer Intern"
     location: "Singapore"
     period: "Dec 2023 - Jun 2024"
+    skills: ["React.js", "React Native", "Typescript", "Tanstack Query"]
     bullets:
       - "<strong>Performance Enhancements:</strong> Improved the performance of Google Maps inside a White Label Progressive Web Application (PWA) by <strong>50%</strong> through employing the use of <strong>debouncing, superclustering</strong> and <strong>framer motion</strong> animations to reduce the lag caused by the rendering of thousands of EV charging stations inside the component."
       - "<strong>Feature Addition:</strong> Refactored the <strong>internal state machine</strong> on the frontend to handle custom business logic in order to incorporate the <strong>Anti-Idling feature</strong>, preventing EV users from hogging a parking lot after their charging session has ended. Improved UX for users through implementing a <strong>virtualized listview</strong> with <strong>infinite scrolling</strong> that would <strong>lazily fetch</strong> charging stations and their charging sessions."
