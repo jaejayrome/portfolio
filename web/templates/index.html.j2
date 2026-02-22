@@ -1,55 +1,101 @@
 {% extends "base.html.j2" %}
 
 {% block content %}
-<header style="margin-bottom: 3rem;">
-    <h1>{{ resume.name | lower | replace(' ', '_') }}</h1>
-    <div class="meta">Software Engineer based in {{ resume.location }}</div>
-</header>
+<div class="terminal-window main-pane">
+    <div class="terminal-header">
+        <span>~/portfolio/index.md</span>
+        <span>[RO]</span>
+    </div>
+    <div class="terminal-body">
+        <nav style="margin-bottom: 2rem; display: flex; gap: 1rem;">
+            <a href="/">home</a>
+            <a href="/blog/">blog</a>
+            <a href="https://{{ resume.github }}" target="_blank">github</a>
+            <a href="/resume" target="_blank">resume</a> 
+        </nav>
 
-<section>
-    <h2>~/experience</h2>
-    {% for exp in resume.experience %}
-        <div class="card" style="margin-bottom: 2rem;">
-            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                <strong>{{ exp.role }} <span style="color: var(--accent);">@ {{ exp.company }}</span></strong>
-                <span class="meta">{{ exp.period }}</span>
+        <h1 style="color: var(--blue); margin-bottom: 1rem;">{{ resume.name }}</h1>
+        <h2 style="color: var(--green); margin-top: 2rem; margin-bottom: 1rem;">~/experience</h2>
+        
+        {% for exp in resume.experience %}
+        <div style="margin-bottom: 2rem; padding-left: 1rem; border-left: 2px solid var(--border);">
+            <div style="color: var(--text);">
+                <strong>{{ exp.role }}</strong> @ {{ exp.company }}
+            </div>
+            <div style="color: var(--subtext0); font-size: 0.9em; margin-bottom: 0.5rem;">
+                {{ exp.period }}
             </div>
 
             {% if exp.skills %}
-            <div style="display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem;">
+            <div style="display: flex; flex-wrap: wrap; gap: 0.4rem;">
                 {% for skill in exp.skills %}
-                <span style="background: var(--surface0, #313244); color: var(--sapphire, #74c7ec); padding: 0.1rem 0.6rem; border-radius: 4px; font-size: 0.85em; border: 1px solid var(--border);">
+                <span style="background: var(--surface0); color: var(--yellow); padding: 0.1rem 0.4rem; border-radius: 4px; font-size: 0.8em;">
                     {{ skill }}
                 </span>
                 {% endfor %}
             </div>
             {% endif %}
 
-            <details>
-                <summary style="cursor: pointer; color: var(--accent); font-weight: bold; margin-bottom: 0.5rem; user-select: none;">
-                    cat details.txt
-                </summary>
-                
-                <ul style="list-style: none; padding-left: 1rem; margin-top: 0.5rem;">
+            <button class="vsplit-btn" onclick="openSplit('job-{{ loop.index }}', '{{ exp.company | lower | replace(' ', '_') }}.txt')">
+                details.txt
+            </button>
+
+            <div id="data-job-{{ loop.index }}" style="display: none;">
+                <ul style="list-style: none; margin-top: 1rem;">
                     {% for bullet in exp.short_bullets %}
-                    <li style="margin-bottom: 0.5rem; color: var(--muted, #8b949e);">
-                        <span style="color: var(--accent);">›</span> 
-                        <strong style="color: var(--fg, #cdd6f4);">{{ bullet.title }}:</strong> {{ bullet.desc }}
+                    <li style="margin-bottom: 0.8rem; color: var(--text);">
+                        <span style="color: var(--blue);">*</span> 
+                        <strong>{{ bullet.title }}:</strong> {{ bullet.desc }}
                     </li>
                     {% endfor %}
                 </ul>
-            </details>
+            </div>
         </div>
-    {% endfor %}
-</section>
-
-<section>
-    <h2>~/skills</h2>
-    <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 0.5rem;">
-        {% for category, items in resume.skills.items() %}
-        <div style="color: var(--muted); text-align: right; padding-right: 1rem; border-right: 1px solid var(--border);">{{ category }}</div>
-        <div>{{ items | join(', ') }}</div>
         {% endfor %}
     </div>
-</section>
+</div>
+
+<div class="terminal-window split-pane" id="splitPane">
+    <div class="terminal-header">
+        <span id="splitTitle">~/portfolio/details.txt</span>
+        <div>
+            <span style="color: var(--subtext0); margin-right: 12px;">[RO]</span>
+            <button class="close-btn" onclick="closeSplit()" style="color: var(--red); font-weight: bold;">[x]</button>
+        </div>
+    </div>
+    <div class="terminal-body" style="display: flex; flex-direction: column;">
+        
+        <div id="splitContent" style="flex: 1;"></div> 
+        
+        <div style="margin-top: 2rem; border-top: 1px dashed var(--border); padding-top: 1rem;">
+            <button class="close-btn" onclick="closeSplit()" style="color: var(--mauve);">:q</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openSplit(jobId, fileName) {
+        const workspace = document.getElementById('workspace');
+        
+        // 1. Update text content
+        document.getElementById('splitTitle').innerText = '~/portfolio/' + fileName;
+        document.getElementById('splitContent').innerHTML = document.getElementById('data-' + jobId).innerHTML;
+        
+        // 2. Trigger the CSS animation
+        workspace.classList.add('split-active');
+        
+        // 3. Scroll to it gracefully if on mobile
+        if (window.innerWidth < 800) {
+            setTimeout(() => {
+                document.getElementById('splitPane').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 300); // Wait for the max-height animation to start
+        }
+    }
+
+    function closeSplit() {
+        const workspace = document.getElementById('workspace');
+        // Instantly triggers the CSS collapse animation
+        workspace.classList.remove('split-active');
+    }
+</script>
 {% endblock %}

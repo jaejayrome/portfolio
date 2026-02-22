@@ -3,19 +3,32 @@
 {% block title %}Blog | {{ resume.name }}{% endblock %}
 
 {% block content %}
-<h1>~/blog</h1>
-<p class="meta" style="margin-bottom: 2rem;">Technical notes, write-ups, and project documentation.</p>
+<div class="terminal-window main-pane">
+    <div class="terminal-header">
+        <span>~/portfolio/blog/ls -la</span>
+        <span>[RO]</span>
+    </div>
+    
+    <div class="terminal-body">
+        <nav style="margin-bottom: 2rem; display: flex; gap: 1rem;">
+            <a href="/">cd ../</a>
+        </nav>
 
-<div>
-    {% for post in blogs %}
-    <a href="/blog/{{ post.slug }}/" style="display: block; text-decoration: none; margin-bottom: 1.5rem;" class="card">
-        <div style="display: flex; justify-content: space-between; align-items: baseline;">
-            <strong style="font-size: 1.1em; color: var(--fg);">{{ post.title }}</strong>
-            <span class="meta">{{ post.date }}</span>
+        <h1 style="color: var(--blue); margin-bottom: 0.5rem;">~/blog</h1>
+        <p class="meta" style="margin-bottom: 2.5rem; color: var(--subtext0);">Technical notes, write-ups, and project documentation.</p>
+
+        <div>
+            {% for post in blogs %}
+            <a href="/blog/{{ post.slug }}/" style="display: block; text-decoration: none; margin-bottom: 1.5rem; padding-left: 1rem; border-left: 2px solid var(--surface0); transition: border-color 0.2s;">
+                <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                    <strong style="font-size: 1.1em; color: var(--green);">{{ post.title }}</strong>
+                    <span class="meta" style="color: var(--subtext0);">{{ post.date }}</span>
+                </div>
+                </a>
+            {% else %}
+            <p class="meta" style="color: var(--red);">ls: cannot access directory: No posts found.</p>
+            {% endfor %}
         </div>
-    </a>
-    {% else %}
-    <p class="meta">No posts found. /p>
-    {% endfor %}
+    </div>
 </div>
 {% endblock %}

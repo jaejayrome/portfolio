@@ -4,139 +4,146 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{{ resume.name }}{% endblock %}</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
-        /* Catppuccin Mocha Palette */
-        :root {
-            --crust: #11111b;     /* Deepest background */
-            --mantle: #181825;    /* Terminal header */
-            --base: #1e1e2e;      /* Main terminal body */
-            --surface0: #313244;  /* Borders */
-            --text: #cdd6f4;      /* Default text */
-            --subtext0: #a6adc8;  /* Muted text */
-            --blue: #89b4fa;      /* Links */
-            --green: #a6e3a1;     /* Success / Prompts */
-            --mauve: #cba6f7;     /* Purple accents */
-            --red: #f38ba8;       /* Close button */
-            --yellow: #f9e2af;    /* Minimize button */
+        /* Theme Dictionaries */
+        :root { 
+            --crust: #11111b; --mantle: #181825; --base: #1e1e2e;
+            --surface0: #313244; --text: #cdd6f4; --subtext0: #a6adc8;
+            --blue: #89b4fa; --green: #a6e3a1; --mauve: #cba6f7;
+            --red: #f38ba8; --yellow: #f9e2af; --border: #313244;
+        }
+        
+        [data-theme="gruvbox"] {
+            --crust: #1d2021; --mantle: #282828; --base: #32302f;
+            --surface0: #504945; --text: #ebdbb2; --subtext0: #a89984;
+            --blue: #83a598; --green: #b8bb26; --mauve: #d3869b;
+            --red: #cc241d; --yellow: #fabd2f; --border: #504945;
+        }
+
+        [data-theme="nord"] {
+            --crust: #292e39; --mantle: #2e3440; --base: #3b4252;
+            --surface0: #4c566a; --text: #eceff4; --subtext0: #d8dee9;
+            --blue: #81a1c1; --green: #a3be8c; --mauve: #b48ead;
+            --red: #bf616a; --yellow: #ebcb8b; --border: #4c566a;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        
-        /* The entire page background outside the terminal */
         body { 
             font-family: 'JetBrains Mono', monospace; 
-            background: var(--crust); 
-            color: var(--text); 
-            line-height: 1.6; 
-            font-size: 14px; 
-            padding: 2rem 1rem;
-            display: flex;
-            justify-content: center;
+            background: var(--crust); color: var(--text); 
+            padding: 2rem 1rem; display: flex; flex-direction: column; align-items: center;
         }
         
-        /* The Terminal Window */
-        .terminal-window { 
-            width: 100%;
-            max-width: 850px; 
-            background: var(--base);
-            border-radius: 10px;
-            border: 1px solid var(--surface0);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+        .cmd-line {
+            width: 100%; max-width: 1200px; margin-bottom: 1rem;
+            color: var(--subtext0); display: flex; gap: 0.5rem;
+        }
+        .cmd-line select {
+            background: transparent; color: var(--green); border: none;
+            font-family: inherit; font-size: 1rem; cursor: pointer; outline: none;
+        }
+
+        /* The Dynamic Workspace Setup */
+        .workspace {
+            display: flex; flex-direction: column;
+            width: 100%; max-width: 1200px; 
+            transition: all 0.4s ease;
+        }
+        
+        .main-pane {
+            min-width: 0;
+            flex: 1;
+            transition: all 0.4s ease;
+            display: flex; flex-direction: column;
+        }
+
+        .split-pane {
+            min-width: 0;
+            opacity: 0;
             overflow: hidden;
+            border: 0px solid var(--border); /* Hidden initially */
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            display: flex; flex-direction: column;
         }
 
-        /* Mac Traffic Lights Header */
+        /* --- DESKTOP BEHAVIOR --- */
+        @media (min-width: 800px) {
+            .workspace { flex-direction: row; }
+            .split-pane { max-width: 0; margin-left: 0; }
+            
+            /* When split is triggered on desktop */
+            .workspace.split-active .split-pane {
+                max-width: 50%;
+                margin-left: 1rem;
+                opacity: 1;
+                border-width: 1px;
+            }
+        }
+
+        /* --- MOBILE BEHAVIOR --- */
+        @media (max-width: 799px) {
+            .split-pane { max-height: 0; margin-top: 0; }
+            
+            /* When split is triggered on mobile */
+            .workspace.split-active .split-pane {
+                max-height: 2000px; 
+                margin-top: 1rem;
+                opacity: 1;
+                border-width: 1px;
+            }
+        }
+
+        /* Terminal UI Styles */
+        .terminal-window { 
+            background: var(--base); border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+        .split-pane.terminal-window {
+            border: none; /* Let the transition handle the border */
+        }
+        .workspace.split-active .split-pane.terminal-window {
+            border: 1px solid var(--border);
+        }
+        
         .terminal-header {
-            background: var(--mantle);
-            padding: 12px 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            border-bottom: 1px solid var(--surface0);
+            background: var(--mantle); padding: 8px 16px;
+            border-bottom: 1px solid var(--border); color: var(--subtext0);
+            font-size: 0.85rem; display: flex; justify-content: space-between; align-items: center;
         }
-        .dot { width: 12px; height: 12px; border-radius: 50%; }
-        .dot-red { background: var(--red); }
-        .dot-yellow { background: var(--yellow); }
-        .dot-green { background: var(--green); }
-        .header-title { 
-            margin: 0 auto; 
-            color: var(--subtext0); 
-            font-size: 0.85rem; 
-            transform: translateX(-20px); /* Center offset for the dots */
-        }
+        .terminal-body { padding: 1.5rem; overflow-y: auto; flex: 1; }
 
-        /* Terminal Body */
-        .terminal-body { padding: 2rem 2.5rem; }
-
-        /* The Starship/Terminal Prompt Navigation */
-        nav { 
-            display: flex; 
-            flex-wrap: wrap; 
-            gap: 1.5rem; 
-            margin-bottom: 3rem; 
-            font-weight: bold;
-            align-items: center;
-        }
-        .prompt-dir { color: var(--mauve); }
-        .prompt-arrow { color: var(--green); margin-right: 0.5rem; }
+        a { color: var(--blue); text-decoration: none; }
+        a:hover { text-decoration: underline; }
         
-        nav a { 
-            color: var(--blue); 
-            text-decoration: none; 
-            transition: color 0.2s; 
+        .vsplit-btn {
+            background: transparent; color: var(--mauve); border: none;
+            font-family: inherit; cursor: pointer; font-size: 0.9em;
+            margin-top: 0.5rem; text-align: left;
         }
-        nav a:hover, nav a.active { color: var(--text); text-decoration: underline; }
+        .vsplit-btn:hover { text-decoration: underline; }
+        .vsplit-btn::before { content: "› :vsplit "; color: var(--subtext0); }
         
-        /* Injecting the command syntax before the links */
-        .nav-links::before {
-            content: "ls -a ";
-            color: var(--subtext0);
-            font-weight: normal;
-            margin-right: 0.5rem;
-        }
-
-        /* General Content Styles */
-        h1, h2, h3 { color: var(--text); margin-bottom: 1rem; }
-        h2 { color: var(--blue); margin-top: 2.5rem; }
-        a.link { color: var(--blue); text-decoration: none; }
-        a.link:hover { text-decoration: underline; }
-        .meta { color: var(--subtext0); font-size: 0.9em; }
-
-        /* Animations */
-        @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .animate { animation: fadeUp 0.5s ease forwards; }
+        /* Close Buttons */
+        .close-btn { background: transparent; border: none; cursor: pointer; font-family: inherit; }
+        .close-btn:hover { opacity: 0.8; }
     </style>
 </head>
 <body>
-    <div class="terminal-window">
-        <div class="terminal-header">
-            <div class="dot dot-red"></div>
-            <div class="dot dot-yellow"></div>
-            <div class="dot dot-green"></div>
-            <div class="header-title">jerome@portfolio: ~</div>
-        </div>
 
-        <div class="terminal-body">
-            <nav>
-                <span class="prompt-dir">~/portfolio</span>
-                <span class="prompt-arrow">❯</span>
-                <div class="nav-links">
-                    <a href="/">home</a>
-                    <a href="/blog/">blog</a>
-                    <a href="https://{{ resume.github }}" target="_blank">github</a>
-                    <a href="/resume.pdf" target="_blank">resume.pdf</a>
-                </div>
-            </nav>
-            
-            <main class="animate">
-                {% block content %}{% endblock %}
-            </main>
-        </div>
+    <div class="cmd-line">
+        <span>:colorscheme</span>
+        <select id="themeSelector" onchange="document.documentElement.setAttribute('data-theme', this.value)">
+            <option value="mocha">catppuccin-mocha</option>
+            <option value="gruvbox">gruvbox-dark</option>
+            <option value="nord">nord</option>
+        </select>
     </div>
+
+    <div class="workspace" id="workspace">
+        {% block content %}{% endblock %}
+    </div>
+
 </body>
 </html>

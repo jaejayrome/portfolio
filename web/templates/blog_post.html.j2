@@ -3,16 +3,32 @@
 {% block title %}{{ post.title }} | {{ resume.name }}{% endblock %}
 
 {% block content %}
-<article>
-    <h1 style="color: var(--accent);">{{ post.title }}</h1>
-    <div class="meta" style="margin-bottom: 2rem;">Published on {{ post.date }}</div>
-    
-    <div style="line-height: 1.8;">
-        {{ post.content | safe }}
+<div class="terminal-window main-pane">
+    <div class="terminal-header">
+        <span>~/portfolio/blog/{{ post.slug }}.md</span>
+        <span>[RO]</span>
     </div>
-</article>
+    
+    <div class="terminal-body">
+        <nav style="margin-bottom: 2rem; display: flex; gap: 1rem;">
+            <a href="/blog/">cd ../</a>
+            <a href="/">cd ~/</a>
+        </nav>
 
-<div style="margin-top: 4rem; border-top: 1px solid var(--border); padding-top: 1rem;">
-    <a href="/blog/" class="link">cd ../</a>
+        <article>
+            <h1 style="color: var(--mauve); margin-bottom: 0.5rem;">{{ post.title }}</h1>
+            <div class="meta" style="margin-bottom: 2.5rem; color: var(--subtext0); border-bottom: 1px dashed var(--surface0); padding-bottom: 1rem;">
+                Published on {{ post.date }}
+            </div>
+            
+            <div style="line-height: 1.8; color: var(--text);">
+                {{ post.content | safe }}
+            </div>
+        </article>
+        
+        <div style="margin-top: 4rem; border-top: 1px dashed var(--surface0); padding-top: 1rem;">
+            <a href="/blog/" class="link" style="color: var(--blue);">:q</a>
+        </div>
+    </div>
 </div>
 {% endblock %}
