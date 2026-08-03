@@ -1,0 +1,108 @@
+\documentclass[10.5pt, letterpaper]{article}
+
+% Packages
+\usepackage[margin=0.85in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\usepackage{tabularx}
+\usepackage{lmodern}
+
+% Formatting
+\pagestyle{empty} % No page numbers
+\setlength{\parindent}{0pt}
+\renewcommand{\baselinestretch}{1.05}
+
+% Section heading: quiet small-caps label, generous whitespace, no rule
+\renewcommand{\section}[1]{ %
+  \vspace{16pt}%
+  \noindent{\small\bfseries \MakeUppercase{#1}}\\[7pt]
+}
+
+% Custom Itemize (airy bullets, no external package needed)
+\makeatletter
+\renewcommand\itemize{ %
+  \ifnum \@itemdepth >\thr@@\@toodeep\else
+    \advance\@itemdepth\@ne
+    \edef\@itemitem{labelitem\romannumeral\the\@itemdepth}%
+    \expandafter\list\csname\@itemitem\endcsname{ %
+      \setlength{\itemsep}{2pt}%
+      \setlength{\topsep}{2pt}%
+      \setlength{\parsep}{0pt}%
+      \setlength{\leftmargin}{1.1em}}%
+  \fi}
+\makeatother
+
+\begin{document}
+
+% =========================
+% Header (left-aligned, spacious)
+% =========================
+{\Huge {{ name | tex_escape }}} \\[5pt]
+\noindent\rule{1.4in}{0.8pt} \\[7pt]
+\small {{ contact_parts | join(" \\quad / \\quad ") }}
+
+% =========================
+% Education
+% =========================
+\section{Education}
+
+{% for edu in education %}
+\noindent
+\textbf{ {{- edu.school | tex_escape -}} }\hfill{} {{- edu.location | tex_escape -}} \\
+\textit{ {{- edu.degree | tex_escape -}} }\textnormal{ | CGPA: {{ edu.cgpa }}}\hfill{} \textbf{ {{- edu.period | tex_escape -}} }
+
+{% if edu.coursework %}
+\vspace{3pt}
+\textbf{Coursework:} {{ edu.coursework | join(", ") | tex_escape }}
+{% endif %}
+
+{% if edu.teaching %}
+\vspace{3pt}
+\textbf{Teaching Assistant:} {{ edu.teaching | join(", ") | tex_escape }}
+{% endif %}
+\vspace{4pt}
+{% endfor %}
+
+% =========================
+% Skills
+% =========================
+\section{Skills}
+\small
+\textbf{Languages:} {{ skills.programming_languages | join(", ") | tex_escape }} \\
+\textbf{Backend:} {{ skills.backend | join(", ") | tex_escape }} \\
+\textbf{Frontend:} {{ skills.frontend | join(", ") | tex_escape }} \\
+\textbf{Infrastructure:} {{ skills.infrastructure | join(", ") | tex_escape }} \\
+\textbf{Certifications:} {{ skills.certifications | join(", ") | tex_escape }}
+
+% =========================
+% Experience
+% =========================
+\section{Experience}
+
+{% for job in experience %}
+\noindent
+\textbf{ {{- job.company | tex_escape -}} } \hfill {{ job.location | tex_escape }} \\
+\textit{ {{- job.role | tex_escape -}} } \hfill \textbf{ {{- job.period | tex_escape -}} }
+
+\begin{itemize}
+{% for b in job.bullets %}
+  \item {{ b | format_latex }}
+{% endfor %}
+\end{itemize}
+\vspace{4pt}
+
+{% endfor %}
+
+{% if awards %}
+% =========================
+% Awards
+% =========================
+\section{Honours \& Awards}
+
+\begin{itemize}
+{% for a in awards %}
+  \item {{ a | tex_escape }}
+{% endfor %}
+\end{itemize}
+{% endif %}
+
+\end{document}

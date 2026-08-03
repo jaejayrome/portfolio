@@ -19,3 +19,6 @@ pdf/output/*.pdf
 pdf/output/*.tex
 pdf/output/*.aux
 pdf/output/*.out
+
+# Packaged per-format/per-profile resume subdirectories
+pdf/output/*/

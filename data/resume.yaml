@@ -1,16 +1,23 @@
-name: "Jerome Goh"
-location: "Singapore"
-email: "jerome.goh.work@gmail.com"
-mobile: "(+65) 82486050"
-linkedin: "linkedin.com/in/jerome-goh-9a8406174"
-github: "github.com/jaejayrome"
+profiles:
+  primary:
+    name: "Jerome Goh"
+    location: "Singapore"
+    email: "jerome.goh.work@gmail.com"
+    mobile: "(+65) 82486050"
+    linkedin: "linkedin.com/in/jerome-goh-9a8406174"
+    github: "github.com/jaejayrome"
+  secondary:
+    name: "Jerome Goh"
+    location: "Singapore"
+    email: "jaejayrome@gmail.com"
+    mobile: "(+65) 89801725"
 
 education:
   - school: "National University of Singapore"
     degree: "Bachelor of Computing - Computer Science"
     location: "Singapore"
     period: "Aug 2022 - May 2026"
-    cgpa: "4.53/5.0"
+    cgpa: "4.35/5.0"
     coursework:
       - "Programming Methodology I & II"
       - "Parallel & Concurrent Programming"
@@ -55,7 +62,7 @@ experience:
   - company: "Bytedance"
     role: "Software Engineer Intern"
     location: "Singapore"
-    period: "Aug 2025 - Present"
+    period: "Aug 2025 - May 2026"
     skills:
       [
         "Kubernetes",

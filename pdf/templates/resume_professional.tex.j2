@@ -1,0 +1,162 @@
+\documentclass[10pt, a4paper]{article}
+
+% Packages
+% This mirrors the classic "rSection/rSubsection" style resume layout
+% (\name, two-column \address header, ruled section headings), but is fully
+% self-contained here rather than depending on an external resume.cls file.
+\usepackage[margin=0.6in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\usepackage{tabularx}
+\usepackage{lmodern}
+\renewcommand{\familydefault}{\sfdefault}
+
+% Formatting
+\pagestyle{empty} % No page numbers
+\setlength{\parindent}{0pt}
+
+% Section heading: bold caps + thin rule, no numbering
+\newenvironment{rSection}[1]{ %
+  \vspace{10pt}%
+  \noindent{\bfseries\MakeUppercase{#1}}\\[-4pt]
+  \noindent\rule{\linewidth}{0.7pt}\\[4pt]
+}{ %
+  \vspace{2pt}
+}
+
+% Entry with a title/date row and a subtitle/location row, followed by bullets
+% (used for Education and Work Experience).
+\newenvironment{rSubsection}[4]{ %
+  \noindent\textbf{#1}\hfill\textbf{#2}\\
+  \textit{#3}\hfill\textit{#4}\\[2pt]
+  \begin{itemize}
+}{ %
+  \end{itemize}
+  \vspace{4pt}
+}
+
+% Lighter entry with just a title/date row, followed by bullets (Projects).
+\newenvironment{rProject}[2]{ %
+  \noindent\textbf{#1}\hfill\textbf{#2}\\[2pt]
+  \begin{itemize}
+}{ %
+  \end{itemize}
+  \vspace{4pt}
+}
+
+% Custom Itemize (Tighter bullets, no external package needed)
+\makeatletter
+\renewcommand\itemize{ %
+  \ifnum \@itemdepth >\thr@@\@toodeep\else
+    \advance\@itemdepth\@ne
+    \edef\@itemitem{labelitem\romannumeral\the\@itemdepth}%
+    \expandafter\list\csname\@itemitem\endcsname{ %
+      \setlength{\itemsep}{1pt}%
+      \setlength{\topsep}{0pt}%
+      \setlength{\parsep}{0pt}%
+      \setlength{\leftmargin}{1.2em}}%
+  \fi}
+\makeatother
+
+\begin{document}
+
+% =========================
+% Header: name + two-column address blocks
+% =========================
+\begin{center}
+  {\Large\bfseries {{ name | tex_escape }}}
+\end{center}
+\vspace{6pt}
+\noindent
+\begin{tabularx}{\linewidth}{@{} X {% if links_block %}X{% endif %} @{}}
+\small
+{% for part in contact_block %}{{ part }}{% if not loop.last %} \\
+{% endif %}{% endfor %}
+{% if links_block %}
+&
+\small\raggedleft
+{% for part in links_block %}{{ part }}{% if not loop.last %} \\
+{% endif %}{% endfor %}
+{% endif %}
+\end{tabularx}
+
+% =========================
+% Education
+% =========================
+\begin{rSection}{Education}
+
+{% for edu in education %}
+\begin{rSubsection}{ {{- edu.school | tex_escape -}} }{ {{- edu.period | tex_escape -}} }{ {{- edu.degree | tex_escape }} (CGPA: {{ edu.cgpa }}) }{ {{- edu.location | tex_escape -}} }
+{% if edu.coursework %}
+  \item \textbf{Relevant Coursework:} {{ edu.coursework | join(", ") | tex_escape }}
+{% endif %}
+{% if edu.teaching %}
+  \item \textbf{Teaching Assistant:} {{ edu.teaching | join(", ") | tex_escape }}
+{% endif %}
+\end{rSubsection}
+{% endfor %}
+
+\end{rSection}
+
+% =========================
+% Work Experience
+% =========================
+\begin{rSection}{Work Experience}
+
+{% for job in experience %}
+\begin{rSubsection}{ {{- job.company | tex_escape -}} }{ {{- job.period | tex_escape -}} }{ {{- job.role | tex_escape -}} }{ {{- job.location | tex_escape -}} }
+{% for b in job.bullets %}
+  \item {{ b | format_latex }}
+{% endfor %}
+\end{rSubsection}
+{% endfor %}
+
+\end{rSection}
+
+{% if projects %}
+% =========================
+% Projects
+% =========================
+\begin{rSection}{Projects}
+
+{% for p in projects %}
+\begin{rProject}{ {{- p.name | tex_escape -}} }{ {{- p.period | tex_escape -}} }
+{% for b in p.bullets %}
+  \item {{ b | format_latex }}
+{% endfor %}
+\end{rProject}
+{% endfor %}
+
+\end{rSection}
+{% endif %}
+
+% =========================
+% Skills
+% =========================
+\begin{rSection}{Skills}
+
+\begin{tabularx}{\linewidth}{@{} >{\bfseries}l @{\hspace{3ex}} X@{}}
+Languages & {{ skills.programming_languages | join(", ") | tex_escape }} \\
+Backend & {{ skills.backend | join(", ") | tex_escape }} \\
+Frontend & {{ skills.frontend | join(", ") | tex_escape }} \\
+Infrastructure & {{ skills.infrastructure | join(", ") | tex_escape }} \\
+Certifications & {{ skills.certifications | join(", ") | tex_escape }} \\
+\end{tabularx}
+
+\end{rSection}
+
+{% if awards %}
+% =========================
+% Awards
+% =========================
+\begin{rSection}{Honours \& Awards}
+
+\begin{itemize}
+{% for a in awards %}
+  \item {{ a | tex_escape }}
+{% endfor %}
+\end{itemize}
+
+\end{rSection}
+{% endif %}
+
+\end{document}
