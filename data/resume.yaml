@@ -22,7 +22,6 @@ education:
       - "Programming Methodology I & II"
       - "Parallel & Concurrent Programming"
       - "Data Structures & Algorithms"
-      - "Software Engineering"
     teaching:
       - "CS2030 Programming Methodology II (Object-Oriented & Functional Programming)"
       - "CP2106 Independent Software Development Project (Software Engineering)"
@@ -31,7 +30,6 @@ skills:
   programming_languages:
     - "Python"
     - "Java"
-    - "TypeScript"
     - "C++"
     - "SQL"
     - "Bash"
@@ -59,6 +57,11 @@ skills:
     - "AWS Solutions Architect - Associate (SAA-C03)"
 
 experience:
+  - company: "Apple"
+    role: "Site Reliability Engineer"
+    location: "Singapore"
+    period: "July 2026 - Present"
+
   - company: "Bytedance"
     role: "Software Engineer Intern"
     location: "Singapore"
