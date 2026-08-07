@@ -45,8 +45,7 @@
 % Education
 % =========================
 \section{Education}
-
-{% for edu in education %}
+{% for edu in education -%}
 \noindent
 \textbf{ {{- edu.school | tex_escape -}} }\hfill{} {{- edu.location | tex_escape -}} \\
 \textit{ {{- edu.degree | tex_escape -}} }\textnormal{ | CGPA: {{ edu.cgpa }}}\hfill{} \textbf{ {{- edu.period | tex_escape -}} }
@@ -78,17 +77,18 @@
 % Experience
 % =========================
 \section{Experience}
-
-{% for job in experience %}
+{% for job in experience -%}
 \noindent
 \textbf{ {{- job.company | tex_escape -}} } \hfill {{ job.location | tex_escape }} \\
 \textit{ {{- job.role | tex_escape -}} } \hfill \textbf{ {{- job.period | tex_escape -}} }
 
+{% if job.bullets %}
 \begin{itemize}
 {% for b in job.bullets %}
   \item {{ b | format_latex }}
 {% endfor %}
 \end{itemize}
+{% endif %}
 \vspace{4pt}
 
 {% endfor %}
