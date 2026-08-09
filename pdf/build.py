@@ -112,9 +112,13 @@ def build_header_blocks(profile):
     ]
     links_block = []
     if profile.get("linkedin"):
-        links_block.append(rf"\href{{https://{profile['linkedin']}}}{{{tex_escape(profile['linkedin'])}}}")
+        links_block.append(
+            rf"\href{{https://{profile['linkedin']}}}{{{tex_escape(profile['linkedin'])}}}"
+        )
     if profile.get("github"):
-        links_block.append(rf"\href{{https://{profile['github']}}}{{{tex_escape(profile['github'])}}}")
+        links_block.append(
+            rf"\href{{https://{profile['github']}}}{{{tex_escape(profile['github'])}}}"
+        )
     return contact_block, links_block
 
 
@@ -210,5 +214,13 @@ for profile_name in profile_names:
         final_pdf = package_dir / "jerome_goh_resume.pdf"
         shutil.move(str(output_dir / f"{output_name}.pdf"), str(final_pdf))
         print(f"Success! Ready to submit: {final_pdf}")
+
+        # TODO: make it dynamic for different profiles (for now: use the stanadard profile)
+        if profile_name == "primary":
+            stable_path = output_dir / "resume.pdf"
+            shutil.copy(str(final_pdf), str(stable_path))
+            print(f"Also copied to stable path: {stable_path}")
     except subprocess.CalledProcessError:
-        print(f"Error: pdflatex failed for {output_name}. Check the log file in the output directory.")
+        print(
+            f"Error: pdflatex failed for {output_name}. Check the log file in the output directory."
+        )
