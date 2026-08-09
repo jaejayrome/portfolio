@@ -33,6 +33,6 @@ COPY --from=web-builder /app/web/output /app/web/output
 
 COPY --from=pdf-builder /app/pdf/output /app/pdf/output
 
-EXPOSE 80
+EXPOSE 8080
 
 CMD ["nginx", "-g", "daemon off;"]

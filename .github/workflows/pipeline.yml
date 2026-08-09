@@ -1,20 +1,28 @@
-name: Deploy to OCI
+name: Deploy to Cloud Run
 
 on:
   push:
     branches:
       - main
 
+permissions:
+  contents: read
+  id-token: write
+
 jobs:
-  build-and-push:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Make deploy script executable
-        run: chmod +x ./cicd/deploy.sh
+      - id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: projects/198777857220/locations/global/workloadIdentityPools/github-pool/providers/github-provider
+          service_account: github-deployer@personal-505008.iam.gserviceaccount.com
 
-      - name: Run CI/CD Script
-        env:
-          OCI_AUTH_TOKEN: ${{ secrets.OCI_AUTH_TOKEN }}
-        run: ./cicd/deploy.sh
+      - uses: google-github-actions/deploy-cloudrun@v2
+        with:
+          service: personal-site
+          region: asia-southeast1
+          source: .
