@@ -25,43 +25,46 @@ education:
     teaching:
       - "CS2030 Programming Methodology II (Object-Oriented & Functional Programming)"
       - "CP2106 Independent Software Development Project (Software Engineering)"
-
 skills:
-  programming_languages:
+  languages:
+    - "Go"
     - "Python"
     - "Java"
-    - "C++"
     - "SQL"
-    - "Bash"
+  infrastructure:
+    - "Linux"
+    - "Kubernetes"
+    - "Helm"
+    - "Docker"
+    - "Terraform"
+    - "Ansible"
+    - "AWS"
+    - "Nginx"
+  observability:
+    - "Prometheus"
+    - "Grafana"
+    - "Splunk"
+    - "Elasticsearch"
   backend:
     - "FastAPI"
     - "Node.js"
-    - "PostgreSQL"
-    - "DynamoDB"
   frontend:
     - "React.js"
     - "Next.js"
     - "TailwindCSS"
-    - "Tanstack Query"
-  infrastructure:
-    - "Linux"
-    - "Terraform"
-    - "Ansible"
-    - "Docker"
-    - "Prometheus"
-    - "Grafana"
-    - "Kubernetes"
-    - "CI/CD"
-    - "AWS"
+  miscellaneous_tools:
+    - "Argo CD"
+    - "Kustomize"
+    - "Spinnaker"
+    - "Vector"
+    - "Kafka"
+    - "PostgreSQL"
+    - "Claude Code"
+    - "LLM APIs"
   certifications:
-    - "AWS Solutions Architect - Associate (SAA-C03)"
+    - "AWS Solutions Architect – Associate (SAA-C03)"
 
 experience:
-  - company: "Apple"
-    role: "Site Reliability Engineer"
-    location: "Singapore"
-    period: "July 2026 - Present"
-
   - company: "Bytedance"
     role: "Software Engineer Intern"
     location: "Singapore"
