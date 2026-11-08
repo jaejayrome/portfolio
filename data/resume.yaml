@@ -25,43 +25,27 @@ education:
       - "CS2030 Programming Methodology II (Object-Oriented & Functional Programming)"
       - "CP2106 Independent Software Development Project (Software Engineering)"
 skills:
-  languages:
-    - "Go"
-    - "Python"
-    - "Java"
-    - "SQL"
-  infrastructure:
-    - "Linux"
-    - "Kubernetes"
-    - "Helm"
-    - "Docker"
-    - "Terraform"
-    - "Ansible"
-    - "AWS"
-    - "Nginx"
-  observability:
-    - "Prometheus"
-    - "Grafana"
-    - "Splunk"
-    - "Elasticsearch"
-  backend:
-    - "FastAPI"
-    - "Node.js"
-  frontend:
-    - "React.js"
-    - "Next.js"
-    - "TailwindCSS"
-  miscellaneous_tools:
-    - "ArgoCD"
-    - "Kustomize"
-    - "Spinnaker"
-    - "Vector"
-    - "Kafka"
-    - "PostgreSQL"
-    - "Claude Code"
-    - "LLM APIs"
-  certifications:
-    - "AWS Solutions Architect – Associate (SAA-C03)"
+  - label: "Languages"
+    items: ["Go", "Python", "Java", "SQL"]
+  - label: "Infrastructure"
+    items:
+      [
+        "Linux",
+        "Kubernetes",
+        "Helm",
+        "Docker",
+        "Terraform",
+        "Ansible",
+        "AWS",
+        "Nginx",
+      ]
+  - label: "Application Development"
+    items: ["FastAPI", "Node.js", "React.js", "PostgreSQL"]
+  - label: "Observability"
+    items: ["Prometheus", "Grafana", "Splunk", "Elasticsearch"]
+  - label: "CI/CD & Tools"
+    items:
+      ["ArgoCD", "Kustomize", "Spinnaker", "Vector", "Kafka", "Claude Code"]
 
 experience:
   - company: "Apple"

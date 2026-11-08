@@ -67,8 +67,8 @@
 % =========================
 \section{Skills}
 \small
-{% for header, items in skills.items() -%}
-\textbf{ {{- header | replace("_", " ") | title | tex_escape -}} :} {{ items | join(", ") | tex_escape }}{% if not loop.last %} \\{% endif %}
+{% for group in skills %}
+\textbf{ {{- group.label | tex_escape -}} :} {{ group["items"] | join(", ") | tex_escape }}{% if not loop.last %} \\{% endif %}
 {% endfor %}
 \vspace{4pt}
 
