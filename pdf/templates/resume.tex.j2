@@ -67,11 +67,10 @@
 % =========================
 \section{Skills}
 \small
-\textbf{Languages:} {{ skills.programming_languages | join(", ") | tex_escape }} \\
-\textbf{Backend:} {{ skills.backend | join(", ") | tex_escape }} \\
-\textbf{Frontend:} {{ skills.frontend | join(", ") | tex_escape }} \\
-\textbf{Infrastructure:} {{ skills.infrastructure | join(", ") | tex_escape }} \\
-\textbf{Certifications:} {{ skills.certifications | join(", ") | tex_escape }}
+{% for header, items in skills.items() -%}
+\textbf{ {{- header | replace("_", " ") | title | tex_escape -}} :} {{ items | join(", ") | tex_escape }}{% if not loop.last %} \\{% endif %}
+{% endfor %}
+\vspace{4pt}
 
 % =========================
 % Experience
