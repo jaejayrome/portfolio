@@ -135,6 +135,8 @@ env = Environment(
     variable_end_string="}}",
     comment_start_string="((#",
     comment_end_string="#))",
+    trim_blocks=True,
+    lstrip_blocks=True,
 )
 
 # Register the filters
